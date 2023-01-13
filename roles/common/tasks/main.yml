@@ -13,10 +13,6 @@
 # Install and configure zsh
 - include_tasks: zsh.yml
   when: setup_zsh == True
-
-# Install and configure spacevim
-- include_tasks: spacevim.yml
-  when: install_spacevim == True
   
 # AUR apps
 - include_tasks: aur.yml

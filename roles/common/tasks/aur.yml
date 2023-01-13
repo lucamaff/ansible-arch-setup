@@ -17,6 +17,7 @@
   aur:
     name:
       - pamac
+      - firefox-appmenu-bin
       - onlyoffice-bin
       - zplug
       - megasync
