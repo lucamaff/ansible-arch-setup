@@ -21,3 +21,4 @@
     path: /etc/pacman.conf
     regexp: '^#IgnoreGroup =$'
     replace: 'IgnoreGroup = modified'
+

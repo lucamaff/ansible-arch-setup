@@ -60,6 +60,9 @@ It's assumed the first time you run the playbook you're doing it on a fairly min
 ### Step 2: Install Ansible
 `sudo pacman -Sy ansible`
 
+### Step 2.1: Install aur module that works
+`ansible-galaxy collection install kewlfft.aur`
+
 ### Step 3: Update your system (optional)
 `sudo pacman -Syu`
 

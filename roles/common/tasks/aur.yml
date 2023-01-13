@@ -1,16 +1,34 @@
-- name: Create AUR directory
-  file: path=/home/{{ username }}/{{ aur.dir }}
-        state=directory
-        owner={{ username }}
-        group={{ username }}
+- name: Create the `aur_builder` user
+  become: yes
+  ansible.builtin.user:
+    name: aur_builder
+    create_home: yes
+    group: wheel
 
-- name: Install AUR base packages
+- name: Allow the `aur_builder` user to run `sudo pacman` without a password
+  become: yes
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers.d/11-install-aur_builder
+    line: 'aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
+    create: yes
+    validate: 'visudo -cf %s'
+
+- name: Install packages from AUR
   aur:
-    name: "{{ aur.packages }}"
-    user: "{{ username }}"
+    name:
+      - pamac
+      - onlyoffice-bin
+      - zplug
+      - megasync
+      - notion-app
+      - rslsync
+      - teamviewer
+      - ticktick
+      - webex-bin
+      - teams
+      - zoom
+    use: auto
+    state: present
+  become: yes
+  become_user: aur_builder
 
-- name: Install rcm
-  aur: name=rcm user={{ username }} 
-
-- name: Instal micro editor
-  aur: name=micro-git user={{ username }}
